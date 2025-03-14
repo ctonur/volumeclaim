@@ -1,0 +1,23 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvctest
+  namespace: ns1
+  uid: 3c3c0075-c053-4564-820e-1cacfb90f07a
+  resourceVersion: '160397'
+  creationTimestamp: '2025-03-14T00:14:40Z'
+  annotations:
+    pv.kubernetes.io/bind-completed: 'yes'
+    pv.kubernetes.io/bound-by-controller: 'yes'
+    volume.beta.kubernetes.io/storage-provisioner: disk.csi.azure.com
+    volume.kubernetes.io/selected-node: aslan-94qxv-worker-westeurope3-6rb8n
+    volume.kubernetes.io/storage-provisioner: disk.csi.azure.com
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pvtest
+  storageClassName: managed-csi
+  volumeMode: Filesystem
