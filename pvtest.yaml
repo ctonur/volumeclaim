@@ -1,0 +1,31 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pvtest
+  uid: 49fbc0b0-3221-4358-85f5-ef9d03557819
+  resourceVersion: '267848'
+  creationTimestamp: '2025-03-13T10:08:18Z'
+  annotations:
+    pv.kubernetes.io/provisioned-by: disk.csi.azure.com
+    volume.kubernetes.io/provisioner-deletion-secret-name: ''
+    volume.kubernetes.io/provisioner-deletion-secret-namespace: ''
+spec:
+  capacity:
+    storage: 1Gi
+  csi:
+    driver: disk.csi.azure.com
+    volumeHandle: /subscriptions/fa951cf0-d9c2-4ca5-aa82-7648f458368e/resourceGroups/aro-infra-m86isc9b-aslan/providers/Microsoft.Compute/disks/pvc-a23fcb40-4f5d-475f-a259-273244daa402
+    fsType: ext4
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: managed-csi
+  volumeMode: Filesystem
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.disk.csi.azure.com/zone
+              operator: In
+              values:
+                - westeurope-2
